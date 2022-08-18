@@ -106,7 +106,7 @@ echo 'vm' >>/mnt/etc/hostname
 # Network Config
 cat >/mnt/etc/systemd/network/20-wired.network <<EOF
 [Match]
-Name=en*
+Name=en*                                # Falls andere Netzwerkkarte aus 'ip addr' hier eingeben zum Beispiel Name=et*
 
 [Network]
 DHCP=yes
