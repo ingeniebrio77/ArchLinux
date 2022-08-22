@@ -23,7 +23,7 @@ Refresh Server
 EFI:
 * 300M=/dev/sda1
 * 1G=/dev/sda2
-* >50G=/dev/sda3
+* 50G=/dev/sda3
 * Rest=/dev/sda4
 
 ### Formatieren der Partitionen
@@ -37,7 +37,7 @@ EFI:
 
 ### Partitionen Montieren
     'mount /dev/sda3 /mnt'
-    mkdir -p /mnt/{boot/efi,home}
+    'mkdir -p /mnt/{boot/efi,home}'
     'mount /dev/sda1 /mnt/boot/efi'
     'mount /dev/sda4 /mnt/home'
     'lsblk'
@@ -83,6 +83,8 @@ EFI:
     'systemctl enable libvirtd'
     'systemctl enable firewalld'
     'systemctl enable acpid'
+    'systemctl enable lxdm'
+    'systemctl enable vboxserservice' 
 
 ### Neu User erstellen
 
