@@ -6,7 +6,7 @@
 
 ### SSH Verbindung 
 Üeberpruefen ob SSH aktiv ist 
-    systemctl status sshd
+    'systemctl status sshd'
 Password fuer User:
     passwd
 
