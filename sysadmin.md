@@ -119,9 +119,115 @@
 
 * Mehrere Paketverwaltungsschemata auf demselben System.
     * Apple, Fink und MacPorts auf MacOSX-Situation.
-    * Fummeln mit $PATH und Bibliothekssuchpfaden erforderlich (Linux:/etc/ld.so.conf**).
+    * Fummeln mit $PATH und Bibliothekssuchpfaden erforderlich (Linux:/etc/ld.so.conf*).
 
 * Nur weil ein Paket „offiziell“ ist, ist es nicht auf dem neuesten Stand (in Bezug auf Aktualität und Fehler-/Sicherheitskorrekturen).
+    * Diese werden von Menschen mit echtem Leben gepflegt, und die Menschen sind oft Freiwillige, die dies in ihrer Freizeit tun.
+    * Für zeitnahe Korrekturen müssen Sie möglicherweise regelmäßig manuell kompilieren/installieren/warten, anstatt sich auf das „offizielle“ Paketverwaltungssystem zu verlassen.
+
+* Automatische Updates
+    * Klingt nett, aber ein Administrator sollte wissen, was tatsächlich installiert oder aktualisiert wird.
+    * Softwareinstallationen/-aktualisierungen sollten eine interaktive Aktivität sein.
+        * Aber das Herunterladen (aber nicht das Installieren) von Upgrades über Nacht per Planung sollte in Ordnung sein.
+
+* Aktualisieren Sie das Betriebssystem/den Kernel/die Software sorgfältig.
+    * (oder Sicherheitspatches, Service Packs usw. anwenden)
+    * Muss es jetzt gemacht werden?
+        * Wird das System genutzt? Sind Benutzer angemeldet?
+        * Kann es bis zum Ende des Quartals/Semesters warten?
+    * Hast du das System vorher gesichert?
+    * Werden Sie in der Lage sein, zu einem früheren Systemzustand zurückzukehren, wenn Ihr Upgrade katastrophal ist?
+    * Haben Sie das Upgrade auf einem oder mehreren Testsystemen ausreichend getestet?
+    * Haben Sie das Upgrade getestet, nachdem Sie es angewendet haben?
+    * Nur die Sicherheitspatches oder -pakete mit hoher Priorität können anstelle des gesamten Pakets von Upgrades/Patches angewendet/installiert werden.
+
+* Installieren Sie nur Software, die tatsächlich verwendet wird.
+    * Unnötige Software kann Schwachstellen enthalten.
+    * Aber den Benutzern Software vorzuenthalten, die sie wirklich brauchen, kann sie dazu motivieren, sie selbst in ihren Home-Verzeichnissen zu installieren.
+
+* Nicht jede Software ist schön verpackt.
+    * wie kommerzielle oder „unfreie“ Software.
+        * Java von Sun, icc (Intel-Compiler), Eclipse-IDE, Netbeans-IDE, VMware.
+    * Möglicherweise müssen Sie es selbst kompilieren.
+        * und Installation in /usr/local oder /opt
+        * Denken Sie vor der Installation über die Möglichkeit der Deinstallation nach.
+            * Kompilieren und Installieren nach /usr/local bedeutet Dateien, die nach /usr/local/bin, /usr/local/lib, /usr/local/share, /usr/local/etc, /usr/local/sbin verstreut sind.
+            * Hat das Makefile der Software ein funktionierendes Deinstallationsziel?
+
+### Users
+
+* Beschreibt ihre Probleme selten mit einem Detaillierungsgrad, der zur Lösung ihrer Probleme erforderlich ist.
+    * Es sollte vermieden werden, nach ihrem Passwort zu fragen, damit Sie sich als sie anmelden können, um ihre Probleme zu diagnostizieren.
+        * Wenn Sie müssen, müssen sie ihr Passwort danach ändern.
+    * Kann su - userid oder eine andere Methode verwenden, um einen Prozess als ein anderer Benutzer zu starten.
+    * Fordern Sie einen Screenshot an.
+        * Manchmal so einfach wie das Drücken der <Print Screen>-Taste.
+        * Oder mit ihren Handys.
+
+* „Essen Sie Ihr eigenes Hundefutter.“
+    * Verwenden Sie dieselbe Umgebung wie die Benutzer, dieselben Computer in denselben Netzwerken wie die Benutzer, damit Sie Probleme erkennen können, mit denen sie zu Ihnen kommen.
+    * Benutzer sein. Verwenden Sie Benutzertools.
+        * Man kann kein UNIX-Administrator sein, ohne zuerst ein UNIX-Benutzer zu sein (gilt auch für Windows)
+    * Beschäftigen Sie sich mit der Benutzerfreundlichkeit der Betriebssystemumgebung für Ihre Benutzer.
+        * Dies hat den zusätzlichen Vorteil, dass Ihre Support-Kopfschmerzen reduziert werden.
+        * Verwenden Sie sinnvolle Einstellungen in Standard-Shell-Profilen in /etc/skel
+            * ohne die Sicherheit zu kompromitieren.
+                * kein „.“ in $PATH, umask=077.
+            * eine informative Shell-Eingabeaufforderung.
+        * Wird die Standardbenutzeroberfläche (Fenstermanager oder Desktop) für CS 175-Studenten vertraut und intuitiv genug sein und auch Beschwerden von Professoren minimieren?
+        * Keine Laufwerksbuchstaben und der einfache Zugriff auf USB-Sticks könnten viele Benutzer frustrieren, egal ob sie Linux-Neulinge sind oder nicht.
+            * Systeme wie autofs funktionieren für Wechselmedien, obwohl ihre Einrichtung normalerweise keine leichte Aufgabe ist.
+            * Balance gegen einfache Verwaltung.
+                * Einfache Fenstermanager wie IceWM: schnellerer Start, geringerer Speicherbedarf, einfach zu konfigurieren (für den Administrator), vertraut aussehende Oberfläche.
+                * Desktop-Umgebungen wie Gnome/KDE: langsamerer Start, größerer Speicherbedarf, einfach zu konfigurieren (für den Benutzer).
+
+* Benutzerschulung (Training)
+    * Eine Support-Webseite mit FAQs?
+    * Gelegentliche „UNIX for Dummies“-Seminare?
+* Gehen Sie nicht davon aus, dass die Benutzer nicht schlau genug sind oder sich der veröffentlichten Sicherheitslücken nicht bewusst sind.
+    * Die „würde hier nie passieren“-Mentalität
+
+### Standardisierung vs. Vielfalt
+
+* Auf einer Linux-Distribution standardisieren oder mehrere Distributionen verwenden?
+    * Wenn Sie standardisieren, wählen Sie Ihre Standarddistribution mit Bedacht aus.
+        * Betrachten Sie die prognostizierte Kontinuität einer Distribution.
+            * Debians Kontinuität scheint eine gute Option zu sein.
+                * weniger bei vielen Debian-Derivaten.
+    * Mehrere Distributionen sind auch eine gute Idee.
+        * RedHat ist immer noch die am weitesten verbreitete Distribution und rpm das am weitesten verbreitete Paketformat.
+            * Es ist gut, mit RPM-basierten Distributionen und Redhat-ähnlichen Distributionen vertraut zu sein.
+    * Mehrere UNIX-Versionen sind ebenfalls eine gute Idee.
+        *  What if, by some miracle, SCO wins and Linux is lost?
+            * FreeBSD waiting in the wings.
+            * Solaris x86? (future looks bleak)
+            * AIX? (not free; bleh)
+            * Mac OS X (see AIX)
+
+### Advocacy
+
+* Should a UNIX admin advocate the use of UNIX?
+    * Up to a point
+        * An admin should advocate the right tool for the job ..
+            * .. and learn the right tool for the job, even if that happens to be Windows.
+
+
+### Learning Administration
+
+    * Learn administration by doing administration.
+    * More likely to learn if something goes wrong.
+
+### Keeping up with the Joneses
+
+    * What technologies are being used “out there,” and are we behind the times?
+        * LDAP instead of NIS
+        * cfengine instead of my own scripts
+        * systemimager instead of my own scripts
+
+
+
+
+
 
 
 
