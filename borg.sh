@@ -49,3 +49,4 @@
         --keep-hourly=12 --keep-daily=60 --keep-weekly=12 --keep-monthly=24
     rm -Rf /tmp/backuphappening
     date;
+    # Quelle [https://it-notes.dragas.net/2020/06/30/searching-for-a-perfect-backup-solution-borg-and-restic/]
