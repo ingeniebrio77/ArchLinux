@@ -15,7 +15,10 @@ output:
 
 
 # Einige allgemeine SysAdmin-Prinzipien
-## Quelle [General SysAdmin Principles] (http://rockhopper.monmouth.edu/cs/jchung/cs471/cs_471_-_general_sysadmin_principles)
+## Quelle 
+
+[General SysAdmin Principles] (http://rockhopper.monmouth.edu/cs/jchung/cs471/cs_471_-_general_sysadmin_principles)
+
 ### Documentation
 
 * Dokumentieren Sie Ihre Arbeit.
@@ -60,7 +63,7 @@ output:
         * Von einem schreibgeschützten Medium oder NFS-Mount
     * Achten Sie auf kürzlich entdeckte Sicherheitsprobleme, Exploits und Vorfälle.
 * Abonnieren Sie Newsgroups und Mailinglisten, die Ihnen diese Informationen liefern könnten?
-* Führen Sie logwatch [Logwatch](https://sourceforge.net/projects/logwatch/)oder ein anderes Programm aus, das Sie auf Unregelmäßigkeiten in Ihren Systemprotokollen hinweist.
+* Führen Sie logwatch [Logwatch] (https://sourceforge.net/projects/logwatch/)oder ein anderes Programm aus, das Sie auf Unregelmäßigkeiten in Ihren Systemprotokollen hinweist.
     * Führen Sie ein Intrusion Detection System aus.
     * Verwenden Sie eine Firewall.
         * IP-Tabellen unter Linux
