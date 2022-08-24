@@ -78,7 +78,7 @@ EOF
     mount "${DISK}2" /mnt
 fi                                      # Ende Funktion "if"
 # Grundlegende Pakette Installieren 
-pacstrap /mnt base linux linux-firmware grub efibootmgr lxde virtualbox-guest-utils vim nano git
+pacstrap /mnt base linux linux-firmware grub efibootmgr lxde virtualbox-guest-utils vim nano git sudo
 
 # File System Table generieren
 genfstab -U /mnt >>/mnt/etc/fstab
