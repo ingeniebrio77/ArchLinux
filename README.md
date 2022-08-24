@@ -1,5 +1,12 @@
 # Archlinux Installation VirtualBox 08/2022
 
+### Fix PGP Schluessel
+
+    [$EDITOR] /etc/pacman.conf
+SigLevel = Requeired DatabaseOptional to 
+
+SigLevel = Never 
+    sed -i 's/^SigLevel.*/SigLevel = Never/' /etc/pacman.conf
 ### Tastatur Layout aud Deutsch
     loadkeys de-latin1
     setfont ter-132n
