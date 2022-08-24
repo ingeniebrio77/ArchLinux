@@ -13,8 +13,9 @@ output:
       keep_tex: yes
 ---
 
-# Einige allgemeine SysAdmin-Prinzipien
 
+# Einige allgemeine SysAdmin-Prinzipien
+## Quelle [General SysAdmin Principles] (http://rockhopper.monmouth.edu/cs/jchung/cs471/cs_471_-_general_sysadmin_principles)
 ### Documentation
 
 * Dokumentieren Sie Ihre Arbeit.
