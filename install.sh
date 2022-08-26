@@ -5,13 +5,12 @@
 set -o errexit                      # Falls Error, Script Abbrechen
 
 # Variabel erstellen aus das Ergebniss von Befehl 'lsblk'
-
 DISK=/dev/sda
 
-# Fix IAD network
-ip route add default via GATEWAY_IP || :
+# Fix IAD network, GATEWAY_IP ist keine gültige IP-Adresse. Aus sicherheitsgründen nicht vergeben
+ip route add default via GATEWAY_IP || : # GATEWAY_IP im Unterricht  
 
-loadkeys de                         # Tastatur Layout
+# loadkeys de                         # Tastatur Layout
 timedatectl set-ntp true            # Network Time Protocol
 # Alles Aushängen
 umount /mnt/boot/efi || :
@@ -91,17 +90,19 @@ echo 'en_US.UTF-8 UTF-8' >>/mnt/etc/locale.gen
 echo 'LANG=de_DE.UTF-8' >>/mnt/etc/locale.conf
 
 # Tastatur Layout
+# echo 'KEYMAP=en' >>/mnt/etc/vconsole.conf
 echo 'KEYMAP=de' >>/mnt/etc/vconsole.conf
 cat >/mnt/etc/X11/xorg.conf.d/00-keyboard.conf <<EOF
 Section "InputClass"
         Identifier "system-keyboard"
         MatchIsKeyboard "on"
         Option "XkbLayout" "de"
+        # Option "XkbLayout" "en"
 EndSection
 EOF
 
 # Hostname
-echo 'vm' >>/mnt/etc/hostname
+echo 'archlinux' >>/mnt/etc/hostname
 
 # Network Config
 cat >/mnt/etc/systemd/network/20-wired.network <<EOF
@@ -133,7 +134,7 @@ systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable lxdm
 systemctl enable vboxservice
-# Root ohne Password 
+# Root ohne Password (Enter)
 passwd -d root
 EOF
 chmod +x /mnt/install.sh                # Ausfuerbare Rechte
