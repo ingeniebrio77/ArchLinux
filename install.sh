@@ -9,7 +9,7 @@ set -o errexit                      # Falls Error, Script Abbrechen
 DISK=/dev/sda
 
 # Fix IAD network
-ip route add default via 172.30.100.20 || :
+ip route add default via GATEWAY_IP || :
 
 loadkeys de                         # Tastatur Layout
 timedatectl set-ntp true            # Network Time Protocol
