@@ -8,7 +8,7 @@ set -o errexit                      # Falls Error, Script Abbrechen
 DISK=/dev/sda
 
 # Fix IAD network, GATEWAY_IP ist keine gültige IP-Adresse. Aus sicherheitsgründen nicht vergeben
-ip route add default via GATEWAY_IP || : # GATEWAY_IP im Unterricht  
+# ip route add default via GATEWAY_IP || : # GATEWAY_IP im Unterricht  
 
 # loadkeys de                         # Tastatur Layout
 timedatectl set-ntp true            # Network Time Protocol
@@ -77,7 +77,7 @@ EOF
     mount "${DISK}2" /mnt
 fi                                      # Ende Funktion "if"
 # Grundlegende Pakette Installieren 
-pacstrap /mnt base linux linux-firmware grub efibootmgr lxde virtualbox-guest-utils vim nano git sudo
+pacstrap /mnt base linux linux-firmware grub efibootmgr virtualbox-guest-utils vim nano git sudo
 
 # File System Table generieren
 genfstab -U /mnt >>/mnt/etc/fstab
@@ -132,12 +132,16 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Dienste aktivieren
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
-systemctl enable lxdm
 systemctl enable vboxservice
 # Root ohne Password (Enter)
 passwd -d root
 EOF
 chmod +x /mnt/install.sh                # Ausfuerbare Rechte
-arch-chroot /mnt /install.sh            # Sich al Root Einlogen und ./install.sh Ausfuehren
+arch-chroot /mnt /install.sh            # Sich als Root Einlogen und ./install.sh Ausfuehren
+
+useradd -mG wheel admin
+echo admin:password | chpasswd
+
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 rm /mnt/install.sh
 echo FINISHED
