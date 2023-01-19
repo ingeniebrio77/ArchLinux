@@ -135,13 +135,11 @@ systemctl enable systemd-resolved
 systemctl enable vboxservice
 # Root ohne Password (Enter)
 passwd -d root
+useradd -mG wheel admin
+echo admin:password | chpasswd
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 EOF
 chmod +x /mnt/install.sh                # Ausfuerbare Rechte
 arch-chroot /mnt /install.sh            # Sich als Root Einlogen und ./install.sh Ausfuehren
-
-useradd -mG wheel admin
-echo admin:password | chpasswd
-
-echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 rm /mnt/install.sh
 echo FINISHED
